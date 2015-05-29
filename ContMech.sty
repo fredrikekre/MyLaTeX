@@ -1,3 +1,8 @@
+% ContMech.sty
+% Package for continuum mechanics (mainly from https://github.com/micket)
+% Fredrik Ekre, ekref@student.chalmers.se
+% v0.1.1, 2015-05-25
+
 \RequirePackage{mathtools}
 \RequirePackage{amssymb}
 
@@ -74,11 +79,12 @@
 \DeclareMathOperator{\dif}{d \!}
 \DeclareMathOperator{\Dif}{D \!}
 \DeclareMathOperator{\tr}{tr} % Trace
+\DeclareMathOperator{\sign}{sign} % Sign function
 
 \providecommand{\od}[2]{\ensuremath{\frac{\dif\:#1}{\dif #2}}} % Ordinary derivatives
 \providecommand{\pd}[2]{\ensuremath{\frac{\partial\: #1}{\partial #2}}} % Total derivatives
 \providecommand{\md}[3]{\ensuremath{\frac{\partial^2\: #1}{\partial #2 \partial #3}}} % Mixed derivatives.
 
-\DeclarePairedDelimiter{\abs}{\lvert}{\rvert} % Norm of a tensor or vector \norm A or \nornm* A
-\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} % Absolute value of a scalar \abs x
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert} % Absolute value of a scalar \abs x
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} % Norm of a tensor or vector \norm A or \nornm* A
 \DeclarePairedDelimiter{\mcc}{\langle}{\rangle} % McCauley bracket

@@ -5,45 +5,13 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{LoLz}[2015/05/25 Custom Package]
 
-\RequirePackage[l2tabu,orthodox]{nag}
-
-\RequirePackage{amsmath} % Math-stuff
-\RequirePackage{microtype} % Magically improves typesetting in LaTeX
-\RequirePackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,urlcolor=blue,citecolor=blue]{hyperref} % Clickable links and references
-\RequirePackage[all]{hypcap} % Improves the target place of clicked links
-\RequirePackage{graphicx} % Figures
-\RequirePackage[margin=1cm]{caption} % Different margin for figure captions.
-\RequirePackage{subfiles}
-
+% Commands for often used things
 \newcommand*{\half}{\frac{1}{2}} % One half
 
-\DeclareMathOperator{\sign}{sign} % sign function
 
-
+% Big brackets of different forms
 \newcommand{\bigp}[1]{\left( #1 \right)} % Big parentheses
 \newcommand{\bigb}[1]{\left[ #1 \right]} % Big bracket
 \newcommand{\bigc}[1]{\left\{ #1 \right\}} % Big curly-bracket
-
-%\newcommand{\figref}[1]{\figurename~\ref{#1}}
-%\renewcommand{\eqref}[1]{\equationname~\eqref{#1}}
-
-%% Index notation
-\renewcommand{\ij}{_{ij}}
-\newcommand{\kl}{_{kl}}
-\newcommand{\mn}{_{mn}}
-\newcommand{\pq}{_{pq}}
-\newcommand{\rs}{_{rs}}
-\newcommand{\uv}{_{uv}}
-\newcommand{\mi}{_{mi}}
-\newcommand{\nj}{_{nj}}
-\renewcommand{\pi}{_{pi}}
-\newcommand{\qj}{_{qj}}
-\newcommand{\ijkl}{_{ijkl}}
-\newcommand{\klmn}{_{klmn}}
-\newcommand{\klpq}{_{klpq}}
-\newcommand{\klij}{_{klij}}
-\newcommand{\ijmn}{_{ijmn}}
-\newcommand{\pqkl}{_{pqkl}}
-\newcommand{\rsuv}{_{rsuv}}
 
 \endinput

@@ -87,3 +87,10 @@
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert} % Absolute value of a scalar \abs x
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert} % Norm of a tensor or vector \norm A or \nornm* A
 \DeclarePairedDelimiter{\mcc}{\langle}{\rangle} % McCauley bracket
+
+% Integrals
+\newcommand*{\intOmega}[1]{\int_\Omega #1 \dif \Omega}
+\newcommand*{\intGammaN}[1]{\int_{\Gamma_\Neumann} #1 \dif \Gamma}
+\newcommand*{\onGammaN}{\quad \mathrm{on}\ \Gamma_\Neumann}
+\newcommand*{\onGammaD}{\quad \mathrm{on}\ \Gamma_\Dirichlet}
+\newcommand*{\inOmega}{\quad \mathrm{in}\ \Omega}

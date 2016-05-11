@@ -11,9 +11,23 @@
 
 
 % Big brackets of different forms
-\newcommand{\bigp}[1]{\left( #1 \right)} % Big parentheses
-\newcommand{\bigb}[1]{\left[ #1 \right]} % Big bracket
-\newcommand{\bigc}[1]{\left\{ #1 \right\}} % Big curly-bracket
+\newcommand{\bp}[1]{\left( #1 \right)} % Automatic sized parentheses
+\newcommand{\bigp}[1]{\big( #1 \big)} % big parentheses
+\newcommand{\Bigp}[1]{\Big( #1 \Big)} % Big parentheses
+\newcommand{\biggp}[1]{\bigg( #1 \bigg)} % bigg parentheses
+\newcommand{\Biggp}[1]{\Bigg( #1 \Bigg)} % Bigg parentheses
+
+\newcommand{\bb}[1]{\left[ #1 \right]} % Automatic sized brackets
+\newcommand{\bigb}[1]{\big[ #1 \big]} % big brackets
+\newcommand{\Bigb}[1]{\Big[ #1 \Big]} % Big brackets
+\newcommand{\biggb}[1]{\bigg[ #1 \bigg]} % bigg brackets
+\newcommand{\Biggb}[1]{\Bigg[ #1 \Bigg]} % Bigg brackets
+
+\newcommand{\bc}[1]{\left\{ #1 \right\}} % Automatic sized curly-brackets
+\newcommand{\bigc}[1]{\big\{ #1 \big\}} % big curly-brackets
+\newcommand{\Bigc}[1]{\Big\{ #1 \Big\}} % Big curly-brackets
+\newcommand{\biggc}[1]{\bigg\{ #1 \bigg\}} % bigg curly-brackets
+\newcommand{\Biggc}[1]{\Bigg\{ #1 \Bigg\}} % Bigg curly-brackets
 
 % Reference shortcuts
 \newcommand{\fig}[1]{Figure~\ref{#1}}

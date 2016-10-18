@@ -1,5 +1,9 @@
 % ContMech.sty
-% Package for continuum mechanics (from https://github.com/micket)
+% Package for continuum mechanics
+% Based on https://github.com/Micket/chalmers/blob/master/contmech.sty
+% Modified by Fredrik Ekre, fredrik.ekre@chalmers.se
+
+\ProvidesPackage{ContMech}
 
 \RequirePackage{mathtools}
 \RequirePackage{amssymb}
@@ -9,6 +13,7 @@
 \newcommand{\dprod}{\mathbin{\vcentcolon}} % Double product
 \newcommand{\cross}{\mathbin{\times}} % Cross product
 \newcommand{\outerp}{\mathbin{\otimes}} % Outer product
+\newcommand{\oprod}{\outerp} % Open product
 \newcommand{\uouterp}{\mathbin{\overline{\otimes}}} % Upper outer product
 \newcommand{\louterp}{\mathbin{\underline{\otimes}}} % Lower outer product
 
@@ -32,9 +37,10 @@
 \newcommand{\set}[1]{\mathbb{#1}} % For defining sets
 
 \newcommand{\diff}{\ts\nabla} % Very common operator
+\newcommand{\grad}{\diff}
 
-\newcommand{\majorT}{\mathrm{T}} % For major transpose, \ts A^\Tran
-\newcommand{\minorT}{\mathrm{t}} % For minor transpose, \tf A^\tran
+\newcommand{\majorT}{\mathrm{T}} % For major transpose, \ts A^\majorT
+\newcommand{\minorT}{\mathrm{t}} % For minor transpose, \tf A^\minorT
 
 % Common decorations for tensors.
 \newcommand{\dev}{\mathrm{dev}} % Deviatoric part
@@ -52,7 +58,9 @@
 \newcommand{\red}{\mathrm{red}} % Reduced value
 \newcommand{\thres}{\mathrm{th}} % Threshold value
 \newcommand{\macro}{\mathrm{M}} % Macroscopic value
-\newcommand{\fluct}{\mathrm{s}} % Fluctuation
+% \newcommand{\fluct}{\mathrm{s}} % Fluctuation
+\newcommand{\fluct}{\mathrm{\mu}} % Fluctuation
+\newcommand{\micro}{\fluct} % Microscopic value (fluctuation)
 \newcommand{\nominal}{\mathrm{nom}} % Nominal value
 
 \newcommand{\Dissipation}{\mathcal{D}}
@@ -68,9 +76,12 @@
 % Outer math commands;
 \newcommand{\defeq}{\overset{\mathrm{def}}{=}} % For definitions X \defeq Y + 1
 %\newcommand{\defeq}{\coloneqq} % alternative
+\newcommand{\seteq}{\overset{!}{=}}
 
-\newcommand{\nextts}[1]{\prescript{n+1}{}{#1}} % Next timestep.
-\newcommand{\oldts}[1]{\prescript{n}{}{#1}} % Old timestep.
+\newcommand{\nextts}[1]{\prescript{n}{}{#1}} % Next timestep.
+\newcommand{\newts}{\nextts} % New timestep
+\newcommand{\oldts}[1]{\prescript{n-1}{}{#1}} % Old timestep.
+\newcommand{\zerots}[1]{\prescript{0}{}{#1}} % Timestep 0.
 
 %\usepackage{commath} % Defines \op, \od, \md for derivatives. Usefull. Similarly defined as below;
 
@@ -79,19 +90,73 @@
 \DeclareMathOperator{\Dif}{D \!}
 \DeclareMathOperator{\tr}{tr} % Trace
 \DeclareMathOperator{\sign}{sign} % Sign function
+\DeclareMathOperator{\spn}{span} % Span of e.g. vectors
 
-\providecommand{\od}[2]{\ensuremath{\frac{\dif\:#1}{\dif #2}}} % Ordinary derivatives
-\providecommand{\pd}[2]{\ensuremath{\frac{\partial\: #1}{\partial #2}}} % Total derivatives
-\providecommand{\md}[3]{\ensuremath{\frac{\partial^2\: #1}{\partial #2 \partial #3}}} % Mixed derivatives.
+\providecommand{\od}[2]{\ensuremath{\frac{\dif #1}{\dif #2}}} % Ordinary derivatives
+\providecommand{\pd}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}} % Total derivatives
+\providecommand{\md}[3]{\ensuremath{\frac{\partial^2 #1}{\partial #2 \partial #3}}} % Mixed derivatives.
 
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert} % Absolute value of a scalar \abs x
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert} % Norm of a tensor or vector \norm A or \nornm* A
 \DeclarePairedDelimiter{\mcc}{\langle}{\rangle} % McCauley bracket
 
-% Integrals
-\newcommand*{\intOmega}[1]{\int_\Omega #1 \dif \Omega}
-\newcommand*{\intGammaN}[1]{\int_{\Gamma_\Neumann} #1 \dif \Gamma}
-\newcommand*{\onGammaN}{\quad \mathrm{on}\ \Gamma_\Neumann}
-\newcommand*{\onGammaD}{\quad \mathrm{on}\ \Gamma_\Dirichlet}
-\newcommand*{\onGamma}{\quad \mathrm{on}\ \Gamma}
-\newcommand*{\inOmega}{\quad \mathrm{in}\ \Omega}
+% Domain
+\newcommand*{\intOmega}[1]{\int_\Omega #1 \dif \Omega} % Integration of domain
+\newcommand*{\intGammaN}[1]{\int_{\Gamma_\Neumann} #1 \dif \Gamma} % Integration of Neumann boundary
+
+% Time integrals
+\newcommand*{\intI}[1]{\int_I #1 \dif t} % Integral over time domain I
+\newcommand*{\intIn}[1]{\int_{I_n} #1 \dif t} % Integral over part n of domain I
+
+% Space time integrals
+\newcommand{\intIintOmega}[1]{\intI{\intOmega{#1}}} % Integral over time and space
+
+% Definitions of boundary conditions
+\newcommand{\pres}{\mathrm{p}} % prescribed value
+% Space
+\newcommand*{\GammaN}{\Gamma_\Neumann} % Neumann boundary
+\newcommand*{\GammaD}{\Gamma_\Dirichlet} % Dirichlet boundary
+\newcommand*{\onGammaN}{\mathrm{on}\ \GammaN}
+\newcommand*{\onGammaD}{\mathrm{on}\ \GammaD}
+\newcommand*{\onGamma}{\mathrm{on}\ \Gamma}
+\newcommand*{\inOmega}{\mathrm{in}\ \Omega}
+% Space-time
+\newcommand*{\onGammaNxI}{\mathrm{on}\ \Gamma_\Neumann\times I}
+\newcommand*{\onGammaDxI}{\mathrm{on}\ \Gamma_\Dirichlet\times I}
+\newcommand*{\onGammaxI}{\mathrm{on}\ \Gamma\times I}
+\newcommand*{\inOmegaxI}{\mathrm{in}\ \Omega\times I}
+
+% Homogenization
+\newcommand*{\OmegaBox}{\Omega_\Box}
+\newcommand*{\GammaBox}{\Gamma_\Box}
+\newcommand*{\intOmegaBox}[1]{\int_{\OmegaBox} #1 \dif \Omega} % Integral over RVE
+\newcommand*{\volOmegaBox}{\abs{\Omega_\Box}} % Volume of RVE
+\newcommand*{\intGammaNBox}[1]{\int_{\Gamma_{\Neumann,\Box}} #1 \dif \Gamma} % Integral over RVE boundary
+\newcommand*{\volGammaBox}{\abs{\Gamma_\Box}} % Volume of RVE boundary
+\newcommand*{\volGammaNBox}{\abs{\Gamma_{\Neumann,\Box}}} % Volume of RVE boundary
+
+\DeclarePairedDelimiter{\mccBox}{\langle}{\rangle_\Box}
+
+% Boundary conditions
+\newcommand*{\onGammaBox}{\mathrm{on}\ \GammaBox}
+
+% Some functionals
+\newcommand*{\mBox}{\mathfrak{m}_{\Box}}
+\newcommand*{\aBox}{\mathfrak{a}_{\Box}}
+\newcommand*{\lBox}{\mathfrak{l}_{\Box}}
+\newcommand*{\fBox}{\mathfrak{f}_{\Box}}
+
+\newcommand*{\A}{\mathcal{A}} % Operator A
+
+% Convenience commands
+\newcommand{\dotbar}[1]{\dot{\bar{#1}}}
+\newcommand{\dotbarbar}[1]{\dot{\bar{\bar{#1}}}}
+\newcommand{\barbar}[1]{\bar{\bar{#1}}}
+\newcommand{\stat}{\mathrm{stat}} % Stationary part of solution
+
+\newcommand{\hatbar}[1]{\hat{\bar{#1}}}
+
+% Model reduction
+\newcommand*{\R}{\mathrm{R}} % Reduced value
+\newcommand*{\sumaNR}{\sum_{a = 1}^{N_\R}}
+\newcommand*{\sumbNR}{\sum_{b = 1}^{N_\R}}

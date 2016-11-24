@@ -45,7 +45,7 @@
 % Common decorations for tensors.
 \newcommand{\dev}{\mathrm{dev}} % Deviatoric part
 \newcommand{\vol}{\mathrm{vol}} % Volumetric part
-\newcommand{\sym}{\mathrm{sym}} % Symmetric part
+\newcommand{\sym}{\mathrm{s}} % Symmetric part
 \newcommand{\skw}{\mathrm{skw}} % Skew part
 \newcommand{\sph}{\mathrm{sph}} % Spherical part
 \newcommand{\trial}{\mathrm{tr}} % Trial value
@@ -136,6 +136,7 @@
 \newcommand*{\volGammaNBox}{\abs{\Gamma_{\Neumann,\Box}}} % Volume of RVE boundary
 
 \DeclarePairedDelimiter{\mccBox}{\langle}{\rangle_\Box}
+\DeclarePairedDelimiter{\mccGammaBox}{\langle}{\rangle_{\GammaBox}}
 
 % Boundary conditions
 \newcommand*{\onGammaBox}{\mathrm{on}\ \GammaBox}

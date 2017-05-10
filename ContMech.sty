@@ -102,7 +102,16 @@
 
 % Domain
 \newcommand*{\intOmega}[1]{\int_\Omega #1 \dif \Omega} % Integration of domain
+\newcommand*{\intGamma}[1]{\int_{\Gamma} #1 \dif \Gamma} % Integration of boundary
 \newcommand*{\intGammaN}[1]{\int_{\Gamma_\Neumann} #1 \dif \Gamma} % Integration of Neumann boundary
+
+% Integrals with parenthesis (p), brackets (b) or curly brackets (c) around the integrand
+\newcommand*{\intOmegap}[1]{\int_\Omega \bp{ #1 }\dif \Omega} % Integration of domain
+\newcommand*{\intOmegab}[1]{\int_\Omega \bb{ #1 }\dif \Omega} % Integration of domain
+\newcommand*{\intOmegac}[1]{\int_\Omega \bc{ #1 }\dif \Omega} % Integration of domain
+\newcommand*{\intGammaNp}[1]{\int_{\Gamma_\Neumann} \bp{ #1 }\dif \Gamma} % Integration of Neumann boundary
+\newcommand*{\intGammaNb}[1]{\int_{\Gamma_\Neumann} \bb{ #1 }\dif \Gamma} % Integration of Neumann boundary
+\newcommand*{\intGammaNc}[1]{\int_{\Gamma_\Neumann} \bc{ #1 }\dif \Gamma} % Integration of Neumann boundary
 
 % Time integrals
 \newcommand*{\intI}[1]{\int_I #1 \dif t} % Integral over time domain I
@@ -149,11 +158,11 @@
 \newcommand*{\rBox}{\mathfrak{r}_{\Box}}
 \newcommand*{\rBoxzero}{\mathfrak{r}_{\Box 0}}
 
-% Some norms
-\DeclarePairedDelimiter{\mNorm}{\lVert}{\rVert_\mathfrak{m}}
-\DeclarePairedDelimiter{\aNorm}{\lVert}{\rVert_\mathfrak{a}}
+\newcommand*{\lBoxstar}{\mathfrak{l}_{\Box}^{\star}}
+
 
 \newcommand*{\A}{\mathcal{A}} % Operator A
+
 
 % Convenience commands
 \newcommand{\dotbar}[1]{\dot{\bar{#1}}}
@@ -166,8 +175,13 @@
 
 % Model reduction
 \newcommand*{\R}{\mathrm{R}} % Reduced value
+\newcommand*{\sumaN}{\sum_{a = 1}^{N}}
+\newcommand*{\sumbN}{\sum_{b = 1}^{N}}
 \newcommand*{\sumaNR}{\sum_{a = 1}^{N_\R}}
 \newcommand*{\sumbNR}{\sum_{b = 1}^{N_\R}}
 
 % Error estimation
 \newcommand*{\microsym}{{\micro\sym}} % symmetric part of fluctuation
+
+% Integer interval
+\newcommand*{\isep}{\mathrel{{.}\,{.}}\nobreak}

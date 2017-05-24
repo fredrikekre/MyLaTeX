@@ -122,6 +122,8 @@
 
 % Definitions of boundary conditions
 \newcommand{\pres}{\mathrm{p}} % prescribed value
+\newcommand*{\normal}{\mathrm{n}}
+
 % Space
 \newcommand*{\GammaN}{\Gamma_\Neumann} % Neumann boundary
 \newcommand*{\GammaD}{\Gamma_\Dirichlet} % Dirichlet boundary
@@ -136,8 +138,8 @@
 \newcommand*{\inOmegaxI}{\mathrm{in}\ \Omega\times I}
 
 % Homogenization
-\newcommand*{\OmegaBox}{\Omega_\Box}
-\newcommand*{\GammaBox}{\Gamma_\Box}
+\newcommand*{\OmegaBox}{{\Omega_\Box}}
+\newcommand*{\GammaBox}{{\Gamma_\Box}}
 \newcommand*{\intOmegaBox}[1]{\int_{\OmegaBox} #1 \dif \Omega} % Integral over RVE
 \newcommand*{\volOmegaBox}{\abs{\Omega_\Box}} % Volume of RVE
 \newcommand*{\intGammaNBox}[1]{\int_{\Gamma_{\Neumann,\Box}} #1 \dif \Gamma} % Integral over RVE boundary
@@ -151,18 +153,32 @@
 \newcommand*{\onGammaBox}{\mathrm{on}\ \GammaBox}
 
 % Some functionals
-\newcommand*{\mBox}{\mathfrak{m}_{\Box}}
-\newcommand*{\aBox}{\mathfrak{a}_{\Box}}
-\newcommand*{\lBox}{\mathfrak{l}_{\Box}}
-\newcommand*{\fBox}{\mathfrak{f}_{\Box}}
-\newcommand*{\rBox}{\mathfrak{r}_{\Box}}
-\newcommand*{\rBoxzero}{\mathfrak{r}_{\Box 0}}
+\newcommand*{\mBox}[2]{\mathfrak{m}_{\Box}(#1, #2)}
+\newcommand*{\aBox}[2]{\mathfrak{a}_{\Box}(#1, #2)}
+\newcommand*{\lBox}[1]{\mathfrak{l}_{\Box}(#1)}
+\newcommand*{\rBox}[1]{\mathfrak{r}_{\Box}(#1)}
+
+%    \newcommand*{\aBox}{\mathfrak{a}_{\Box}}
+%    \newcommand*{\lBox}{\mathfrak{l}_{\Box}}
+%\newcommand*{\fBox}{\mathfrak{f}_{\Box}}
+%    \newcommand*{\rBox}{\mathfrak{r}_{\Box}}
+%\newcommand*{\rBoxzero}{\mathfrak{r}_{\Box 0}}
 
 \newcommand*{\lBoxstar}{\mathfrak{l}_{\Box}^{\star}}
+\newcommand*{\rBoxstar}{\mathfrak{r}_{\Box}^{\star}}
 
 
 \newcommand*{\A}{\mathcal{A}} % Operator A
 
+% two scale expansions with A operator
+%% regular expansion
+\newcommand*{\twoscale}[1]{\mathcal{A}\bar{#1} + {#1}^\micro}
+\newcommand*{\twoscaledot}[1]{\mathcal{A}\dotbar{#1} + \dot{#1}^\micro}
+%% tilde expansion
+\newcommand*{\twoscaletilde}[1]{\tilde{\mathcal{A}}\bar{#1} + \tilde{#1}^\micro}
+\newcommand*{\twoscaletildedot}[1]{\tilde{\mathcal{A}}\dotbar{#1} + \dot{\tilde{#1}}^\micro}
+%% symmetric
+\newcommand*{\twoscaletildesym}[1]{\tilde{A}\bar{e}^\sym + \tilde{e}^{\micro\sym}}
 
 % Convenience commands
 \newcommand{\dotbar}[1]{\dot{\bar{#1}}}
@@ -183,5 +199,15 @@
 % Error estimation
 \newcommand*{\microsym}{{\micro\sym}} % symmetric part of fluctuation
 
+% norms
+\newcommand*{\mnorm}[1]{\lVert #1 \rVert_{\mathfrak{m}}}
+\newcommand*{\anorm}[1]{\lVert #1 \rVert_{\mathfrak{a}}}
+
+% Cauchy-Schwarz less than or equal to
+\newcommand*{\csleq}{\overset{\text{C-S}}{\leq}}
+
+
 % Integer interval
 \newcommand*{\isep}{\mathrel{{.}\,{.}}\nobreak}
+
+
